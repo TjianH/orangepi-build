@@ -245,8 +245,7 @@ fetch_from_repo()
 
 	if [[ "$(git rev-parse --git-dir 2>/dev/null)" == ".git" && \
 		  "$url" != "$(git remote get-url origin 2>/dev/null)" ]]; then
-		display_alert "Remote URL does not match, removing existing local copy"
-		rm -rf .git ./*
+		display_alert "Remote URL does not match."
 	fi
 
 	if [[ "$(git rev-parse --git-dir 2>/dev/null)" != ".git" ]]; then
@@ -796,7 +795,7 @@ prepare_host()
 
 	local toolchains=(
 		"gcc-linaro-7.4.1-2019.02-x86_64_arm-linux-gnueabi.tar.xz"
-		"gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu.tar.xz"
+		"gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu.tar.xz"
 		)
 
 	USE_TORRENT_STATUS=${USE_TORRENT}
@@ -817,7 +816,6 @@ prepare_host()
 		done
 		if [[ $found == no ]]; then
 			display_alert "Removing obsolete toolchain" "$dir"
-			rm -rf $SRC/toolchains/$dir
 		fi
 	done
 
